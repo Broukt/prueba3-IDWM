@@ -1,23 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import {
-  AbstractControl,
   FormBuilder,
   FormGroup,
-  ValidatorFn,
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
-import { CreateMember } from 'src/app/_interfaces/create-member';
+import { EditMember } from 'src/app/_interfaces/edit-member';
 import { MemberService } from 'src/app/_services/member.service';
-
 @Component({
-  selector: 'app-member-add',
-  templateUrl: './member-add.component.html',
-  styles: [],
+  selector: 'app-member-edit',
+  templateUrl: './member-edit.component.html',
+  styles: [
+  ]
 })
-export class MemberAddComponent implements OnInit {
-  addForm: FormGroup = new FormGroup({});
-  createMember: CreateMember = {
+export class MemberEditComponent implements OnInit{
+  editForm: FormGroup = new FormGroup({});
+  editMember: EditMember = {
     name: '',
     email: '',
     semester: -1,
@@ -36,7 +34,7 @@ export class MemberAddComponent implements OnInit {
   }
 
   initializeForm() {
-    this.addForm = this.fb.group({
+    this.editForm = this.fb.group({
       name: [
         '',
         [
@@ -59,13 +57,13 @@ export class MemberAddComponent implements OnInit {
   }
 
 
-  add() {
-    this.createMember.name = this.addForm.get('name')?.value;
-    this.createMember.email = this.addForm.get('email')?.value;
-    this.createMember.semester = this.addForm.get('semester')?.value;
-    this.createMember.career = this.addForm.get('career')?.value;
+  edit() {
+    this.editMember.name = this.editForm.get('name')?.value;
+    this.editMember.email = this.editForm.get('email')?.value;
+    this.editMember.semester = this.editForm.get('semester')?.value;
+    this.editMember.career = this.editForm.get('career')?.value;
 
-    this.memberService.createMember(this.createMember).subscribe({
+    this.memberService.editMember(1, this.editMember).subscribe({
       next: () => {
         this.router.navigateByUrl('/members')
       },

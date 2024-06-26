@@ -8,7 +8,9 @@ import { NavbarComponent } from './_components/navbar/navbar.component';
 import { FooterComponent } from './_components/footer/footer.component';
 import { MemberListComponent } from './_pages/member-list/member-list.component';
 import { MemberAddComponent } from './_pages/member-add/member-add.component';
-import { TextInputComponent } from './_component/text-input/text-input.component';
+import { TextInputComponent } from './_components/text-input/text-input.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MemberEditComponent } from './_pages/member-edit/member-edit.component';
 
 @NgModule({
   declarations: [
@@ -18,8 +20,9 @@ import { TextInputComponent } from './_component/text-input/text-input.component
     MemberListComponent,
     MemberAddComponent,
     TextInputComponent,
+    MemberEditComponent,
   ],
-  imports: [BrowserModule, HttpClientModule, AppRoutingModule],
+  imports: [AppRoutingModule, BrowserModule, FormsModule, HttpClientModule, ReactiveFormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })
