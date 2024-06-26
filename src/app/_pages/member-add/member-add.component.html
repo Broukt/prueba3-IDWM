@@ -1,0 +1,62 @@
+<div class="p-8 flex items-start justify-center">
+    <form
+      class="w-full py-4 px-6 max-w-lg bg-white border border-gray-200 rounded-lg shadow flex flex-col gap-4"
+      [formGroup]="addForm"
+      (ngSubmit)="addForm.valid && add()"
+      autocomplete="off"
+    >
+      <h5 class="text-xl my-2 font-medium text-gray-900">
+        Añade un producto
+      </h5>
+  
+      <app-text-input
+        [formControl]="$any(addForm.controls['name'])"
+        label="Nombre"
+        placeholder="Ingrese su nombre"
+        requiredMessage="El nombre es requerido"
+      />
+  
+      <app-text-input
+        [formControl]="$any(addForm.controls['email'])"
+        label="Correo electrónico"
+        [type]="'email'"
+        placeholder="Ingrese su correo electrónico"
+        requiredMessage="El correo electrónico es requerido"
+      />
+  
+      <app-text-input
+        [formControl]="$any(addForm.controls['semester'])"
+        label="Semestre"
+        placeholder="Ingrese el semestre"
+        requiredMessage="El semestre es requerido"
+      />
+  
+      <app-text-input
+        [formControl]="$any(addForm.controls['career'])"
+        label="Carrera"
+        placeholder="Ingrese su carrera"
+        requiredMessage="La carrera es requerida"
+      />
+  
+      <div
+        *ngIf="errorMessage"
+        class="p-4 text-sm text-red-800 rounded-lg bg-red-50"
+        role="alert"
+      >
+        <span class="font-medium">Error!</span> {{ errorMessage }}
+      </div>
+  
+      <button
+        class="place-self-end w-fit my-2 px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg"
+        [disabled]="!addForm.valid"
+        [ngClass]="
+          addForm.valid
+            ? 'hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300'
+            : 'bg-blue-300 cursor-not-allowed'
+        "
+        type="submit"
+      >
+        Agregar integrante
+      </button>
+    </form>
+  </div>
